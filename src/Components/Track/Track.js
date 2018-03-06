@@ -16,8 +16,7 @@ export class Track extends Component {
 	}
 
 	addTrack() {
-		console.log(typeof this.props.onAdd);
-		// this.props.onAdd(this.props.track);
+		this.props.onAdd(this.props.track);
 	}
 
 	removeTrack() {
