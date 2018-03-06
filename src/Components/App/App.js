@@ -1,52 +1,55 @@
 import React, { Component } from 'react';
-//import { SearchBar } from ../SearchBar/SearchBar;
-//import { SearchResults } from ../SearchResults/SearchResults;
-//import { PlayList } from ../Playlist/Playlist;
+import { SearchBar } from '../SearchBar/SearchBar';
+import { SearchResults } from '../SearchResults/SearchResults';
+import { Playlist } from '../Playlist/Playlist';
 import './App.css';
 
 class App extends Component {
 
   constructor(props) {
     super(props);
-    this.state.searchResults = [{
-      id: '123',
-      name: 'Tiny Dancer',
-      artist: 'Elton John',
-      album: 'Madman Across The Water',
-      uri: 'spotify:track:3n3Ppam7vgaVa1iaRUc9Lp'
-    }, {
-      id: '456',
-      name: 'Tiny Dancer',
-      artist: 'Elton John',
-      album: 'Madman Across The Water',
-      uri: 'spotify:track:3n3Ppam7vgaVa1iaRUc9Lp'
-    }];
-    this.state.playlistName = 'testing!!!';
-    this.state.playlistTracks = [{
-      id: '789',
-      name: 'Tiny Dancer',
-      artist: 'Elton John',
-      album: 'Madman Across The Water',
-      uri: 'spotify:track:3n3Ppam7vgaVa1iaRUc9Lp'
-    }, {
-      id: '101112',
-      name: 'Tiny Dancer',
-      artist: 'Elton John',
-      album: 'Madman Across The Water',
-      uri: 'spotify:track:3n3Ppam7vgaVa1iaRUc9Lp'
-    }];
+    this.state = {
+        searchResults: [{
+          id: '123',
+          name: 'Tiny Dancer',
+          artist: 'Elton John',
+          album: 'Madman Across The Water',
+          uri: 'spotify:track:3n3Ppam7vgaVa1iaRUc9Lp'
+        }, {
+          id: '456',
+          name: 'Tiny Dancer',
+          artist: 'Elton John',
+          album: 'Madman Across The Water',
+          uri: 'spotify:track:3n3Ppam7vgaVa1iaRUc9Lp'
+        }],
+        playlistName: 'testing!!!',
+        playlistTracks: [{
+          id: '789',
+          name: 'Tiny Dancer',
+          artist: 'Elton John',
+          album: 'Madman Across The Water',
+          uri: 'spotify:track:3n3Ppam7vgaVa1iaRUc9Lp'
+        }, {
+          id: '101112',
+          name: 'Tiny Dancer',
+          artist: 'Elton John',
+          album: 'Madman Across The Water',
+          uri: 'spotify:track:3n3Ppam7vgaVa1iaRUc9Lp'
+        }]
+    }
 
     this.addTrack = this.addTrack.bind(this);
     this.removeTrack = this.removeTrack.bind(this);
     this.updatePlayListName = this.updatePlayListName.bind(this);
     this.savePlaylist = this.savePlaylist.bind(this);
+    this.search = this.search.bind(this);
   }
 
   addTrack(track) {
     let trackExists = false;
     let myTracks = this.state.playlistTracks;
     myTracks.forEach((aTrack) => {
-      if (playListTrack.id === track.id) {
+      if (aTrack.id === track.id) {
         trackExists = true;
       }
     });
@@ -78,12 +81,16 @@ class App extends Component {
     });
   }
 
+  search(term) {
+    console.log(term);
+  }
+
   render() {
     return (
       <div>
         <h1>Ja<span className="highlight">mmm</span>ing</h1>
           <div className="App">
-            <!-- Add a SearchBar component -->
+            <SearchBar onSearch={this.onSearch}/>
           <div className="App-playlist">
             <SearchResults searchResults={this.state.searchResults} onAdd={this.addTrack}/>
             <Playlist playlistName={this.state.playlistName} playlistTracks={this.state.playlistTracks}

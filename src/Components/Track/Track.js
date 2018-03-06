@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import './Track.css';
 
-class Track extends Component {
+export class Track extends Component {
 
 	constructor(props) {
-		super(props) {
-			this.addTrack = this.addTrack.bind(this);
-			this.removeTrack = this.removeTrack.bind(this);
-		}
+		super(props);
+		this.addTrack = this.addTrack.bind(this);
+		this.removeTrack = this.removeTrack.bind(this);
 	}
 
 	renderAction() {
@@ -17,7 +16,8 @@ class Track extends Component {
 	}
 
 	addTrack() {
-		this.props.onAdd(this.props.track);
+		console.log(typeof this.props.onAdd);
+		// this.props.onAdd(this.props.track);
 	}
 
 	removeTrack() {
@@ -25,14 +25,14 @@ class Track extends Component {
 	}
 
 	render() {
-		<div className="Track">
-		  <div className="Track-information">
-		    <h3>{this.props.track.name}</h3>
-		    <p>{this.props.track.artist} | {this.props.track.album}</p>
-		  </div>
-		  {this.renderAction()}
-		</div>
+		return (
+			<div className="Track">
+			  <div className="Track-information">
+			    <h3>{this.props.track.name}</h3>
+			    <p>{this.props.track.artist} | {this.props.track.album}</p>
+			  </div>
+			  {this.renderAction()}
+			</div>
+		);
 	}
 }
-
-export default Track;
